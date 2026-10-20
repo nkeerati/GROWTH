@@ -70,6 +70,8 @@ export const SkillDiscoveryView: React.FC = () => {
   };
 
   const categoriesConfig: Record<string, { label: string; icon: string; color: string; max: number; badgeBg: string }> = {
+    engineering: { label: 'วิศวกรรมและนวัตกรรม (Engineering & IoT)', icon: '⚙️', color: 'bg-[#0284C7]', max: 10, badgeBg: 'bg-[#E0F2FE] text-[#0369A1]' },
+    medical: { label: 'การแพทย์และสุขภาวะ (Healthcare & Medicine)', icon: '🩺', color: 'bg-[#10B981]', max: 10, badgeBg: 'bg-[#D1FAE5] text-[#065F46]' },
     marketing: { label: 'การตลาดและสื่อดิจิทัล (Marketing)', icon: '💡', color: 'bg-[#FF9B85]', max: 10, badgeBg: 'bg-[#FFE5D9] text-[#9A3412]' },
     social: { label: 'การพัฒนาสังคมและความยั่งยืน (Social Impact)', icon: '🌱', color: 'bg-[#52B788]', max: 10, badgeBg: 'bg-[#D8F3DC] text-[#1B4332]' },
     business: { label: 'นวัตกรรมธุรกิจและการเป็นผู้ประกอบการ (Business)', icon: '🚀', color: 'bg-[#F4A261]', max: 10, badgeBg: 'bg-[#FEF3C7] text-[#B45309]' },

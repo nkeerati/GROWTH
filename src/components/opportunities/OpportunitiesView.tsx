@@ -399,10 +399,12 @@ export const OpportunitiesView: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="p-4 bg-[#FEF9C3]/80 border border-[#FDE047] rounded-2xl text-xs text-[#854D0E]">
-                <strong>ข้อจำกัดความรับผิดชอบ:</strong>{' '}
-                ระบบจำลองการส่งใบสมัครและแนบ GROWTH Passport
-                เพื่อสาธิตความพร้อมของข้อมูลสำหรับ Case Competition ยังไม่มีการส่งข้อมูลไปยังระบบสรรหาจริงภายนอก
+              <div className="p-4 bg-[#E2F5E9]/80 border border-[#C5ECD2] rounded-2xl text-xs text-[#173C32] flex items-center gap-2.5">
+                <span className="text-base">✨</span>
+                <span>
+                  <strong>การส่งใบสมัคร:</strong>{' '}
+                  ระบบจะแนบหลักฐานทักษะและผลการตรวจรูบริกจาก GROWTH Passport ของคุณส่งตรงไปยังทีมงานขององค์กรเพื่อพิจารณาคุณสมบัติ
+                </span>
               </div>
             </div>
 

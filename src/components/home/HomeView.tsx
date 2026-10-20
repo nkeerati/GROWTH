@@ -104,7 +104,7 @@ export const HomeView: React.FC = () => {
           <div className="text-2xl font-black font-mono text-slate-900 mt-2 tabular-nums">
             {inProgressProjectsCount} <span className="text-sm font-sans font-normal text-slate-500">โปรเจกต์</span>
           </div>
-          <div className="text-[11px] text-sky-700 font-medium mt-1">ร้านค้าชุมชนและสิ่งแวดล้อม</div>
+          <div className="text-[11px] text-sky-700 font-medium mt-1">วิศวกรรม การแพทย์ และชุมชน</div>
         </div>
 
         <div className="bg-white border border-[#EFECE6] rounded-2xl p-5 shadow-2xs hover:border-purple-200 transition-colors">

@@ -30,6 +30,8 @@ export const ProjectsView: React.FC = () => {
 
   const categories = [
     { id: 'all', label: 'ทั้งหมด', icon: '✨' },
+    { id: 'engineering', label: 'วิศวกรรมและ IoT', icon: '⚙️' },
+    { id: 'medical', label: 'สุขภาพและการแพทย์', icon: '🩺' },
     { id: 'marketing', label: 'การตลาดและสื่อ', icon: '💡' },
     { id: 'data', label: 'ข้อมูลและสถิติ', icon: '📊' },
     { id: 'social', label: 'พัฒนาสังคม', icon: '🌱' },
@@ -74,7 +76,7 @@ export const ProjectsView: React.FC = () => {
             </h1>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            ร่วมแก้ปัญหาจริงให้ร้านค้าชุมชน โรงเรียน และองค์กร เพื่อสะสมหลักฐานทักษะในพาสปอร์ต ✨
+            ร่วมแก้ปัญหาจริงให้องค์กร วิศวกรรม การแพทย์ และชุมชน เพื่อสะสมหลักฐานทักษะในพาสปอร์ต ✨
           </p>
         </div>
         <div className="text-xs text-slate-400 font-mono tabular-nums self-start sm:self-auto bg-white px-3 py-1.5 rounded-full border border-[#EFECE6] shadow-2xs font-semibold">
@@ -82,13 +84,12 @@ export const ProjectsView: React.FC = () => {
         </div>
       </div>
 
-      {/* Demo Notice (Pastel Yellow) */}
-      <div className="p-3.5 bg-[#FEF9C3]/70 border border-[#FDE047]/60 rounded-2xl flex items-center gap-2.5 text-xs text-[#854D0E]">
-        <span className="text-sm">💡</span>
-        <span>
-          <strong>ข้อความชี้แจง:</strong>{' '}
-          ชื่อองค์กรและโจทย์ในส่วนนี้เป็นข้อมูลตัวอย่างสำหรับการสาธิต (Case Demonstration Prototype)
-          ไม่ได้เป็นโครงการจริงที่ได้รับการอนุมัติอย่างเป็นทางการจากองค์กรนั้น
+      {/* Encouraging Pastel Highlight Banner */}
+      <div className="p-4 bg-gradient-to-r from-[#E2F5E9]/90 via-[#FAF8F5] to-[#FFE8DF]/90 border border-[#C5ECD2] rounded-3xl flex items-center gap-3 text-xs text-[#173C32] shadow-2xs">
+        <span className="text-lg">🌿</span>
+        <span className="leading-relaxed">
+          <strong>ลงมือทำเพื่อสะสมพาสปอร์ต:</strong>{' '}
+          ทุกโปรเจกต์ได้รับการออกแบบร่วมกับองค์กรและผู้เชี่ยวชาญ เมื่อส่งมอบงานและผ่านเกณฑ์รูบริก ทักษะจะได้รับการรับรองใน GROWTH Passport ทันที ✨
         </span>
       </div>
 

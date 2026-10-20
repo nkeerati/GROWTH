@@ -19,21 +19,24 @@ import {
   Star,
   Check,
   Building,
+  Wrench,
+  Stethoscope,
 } from 'lucide-react';
 
 export const AuthView: React.FC = () => {
-  const { loginAsDemo, loginUser, registerUser } = useApp();
+  const { loginUser, registerUser } = useApp();
 
   const [authMode, setAuthMode] = useState<'register' | 'login'>('register');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Selected mascot avatar
+  // Selected mascot avatar (Cute, vibrant pastel)
   const avatarOptions = [
     { id: 'praewa', label: 'แพรวา', emoji: '👧🏻', desc: 'Creative Marketer', url: '/src/assets/images/praewa_student_avatar_1792488399143.jpg' },
     { id: 'tonkla', label: 'ต้นกล้า', emoji: '🧑🏻‍💻', desc: 'Data & Tech', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80' },
+    { id: 'engineer', label: 'นนท์ (วิศวะ)', emoji: '🧑🏻‍🔧', desc: 'Engineering & IoT', url: '/src/assets/images/project_engineering_iot_1792506736159.jpg' },
+    { id: 'doctor', label: 'พลอย (แพทย์)', emoji: '👩🏻‍⚕️', desc: 'Healthcare & Medical', url: '/src/assets/images/project_medical_health_1792506754009.jpg' },
     { id: 'meena', label: 'มีนา', emoji: '👩🏻‍🎨', desc: 'UX/UI Designer', url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80' },
     { id: 'baiboon', label: 'ใบบุญ', emoji: '🌱', desc: 'Social Impact', url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80' },
-    { id: 'sky', label: 'สกาย', emoji: '🚀', desc: 'Young Builder', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80' },
   ];
   const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
 
@@ -63,6 +66,8 @@ export const AuthView: React.FC = () => {
   const [loginError, setLoginError] = useState('');
 
   const interestOptions = [
+    { id: 'Engineering', label: 'วิศวกรรมและ IoT', icon: '⚙️', bg: 'bg-[#E0F2FE]', border: 'border-[#BAE6FD]', text: 'text-[#0369A1]' },
+    { id: 'Medicine & Health', label: 'สุขภาพและการแพทย์', icon: '🩺', bg: 'bg-[#D1FAE5]', border: 'border-[#A7F3D0]', text: 'text-[#065F46]' },
     { id: 'Digital Marketing', label: 'การตลาดดิจิทัล', icon: '💡', bg: 'bg-[#FFE8DF]', border: 'border-[#FFD2C2]', text: 'text-[#C84B29]' },
     { id: 'Data Analytics', label: 'การวิเคราะห์ข้อมูล', icon: '📊', bg: 'bg-[#E3F2FD]', border: 'border-[#BAE6FD]', text: 'text-[#0284C7]' },
     { id: 'UX/UI Design', label: 'การออกแบบ UX/UI', icon: '🎨', bg: 'bg-[#EDE8FF]', border: 'border-[#D8D0FF]', text: 'text-[#6366F1]' },
@@ -114,22 +119,10 @@ export const AuthView: React.FC = () => {
     loginUser(loginEmail.trim());
   };
 
-  const quickFillAccount = (type: 'praewa' | 'assessor' | 'partner') => {
-    if (type === 'praewa') {
-      loginAsDemo();
-    } else if (type === 'assessor') {
-      setLoginEmail('assessor.waranya@growth.org');
-      setLoginPassword('reviewer2026');
-    } else {
-      setLoginEmail('partner.nongmon@community.org');
-      setLoginPassword('partner2026');
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#FAF8F5] flex flex-col justify-between selection:bg-[#FFE8DF] selection:text-[#173C32]">
       {/* Top Navbar */}
-      <header className="w-full bg-white/80 backdrop-blur-md border-b border-[#EAE6DF] px-4 sm:px-10 py-3.5 sticky top-0 z-30">
+      <header className="w-full bg-white/85 backdrop-blur-md border-b border-[#EAE6DF] px-4 sm:px-10 py-3.5 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo & Platform Name */}
           <div className="flex items-center gap-3">
@@ -151,16 +144,17 @@ export const AuthView: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Demo Access Header Action */}
+          {/* Clean Switch between Register & Sign in */}
           <div className="flex items-center gap-2">
             <button
-              onClick={loginAsDemo}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFE8DF] hover:bg-[#ffd2c2] text-[#9A3412] border border-[#FFD2C2] rounded-xl text-xs font-bold transition-all shadow-2xs hover:scale-102"
-              title="เข้าใช้งานทันทีด้วยบัญชีสาธิตสำหรับกรรมการ"
+              onClick={() => {
+                setAuthMode(authMode === 'register' ? 'login' : 'register');
+                setRegError('');
+                setLoginError('');
+              }}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FAF8F5] hover:bg-white text-slate-700 border border-[#EAE6DF] rounded-xl text-xs font-bold transition-all shadow-2xs hover:border-[#52B788]"
             >
-              <span>⚡</span>
-              <span className="hidden sm:inline">เข้าทดลองบัญชีตัวอย่าง (แพรวา)</span>
-              <span className="sm:hidden">บัญชีตัวอย่าง</span>
+              <span>{authMode === 'register' ? '🔑 เข้าสู่ระบบ' : '🌸 ลงทะเบียนเข้าใช้งานใหม่'}</span>
             </button>
           </div>
         </div>
@@ -185,7 +179,7 @@ export const AuthView: React.FC = () => {
                 </h1>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  ค้นหาความถนัดของตนเอง ลงมือทำโจทย์จริงร่วมกับชุมชนและองค์กร สะสมพาสปอร์ตทักษะที่มีหลักฐานยืนยัน และยื่นสมัครฝึกงานได้ทันที 🌿
+                  ค้นหาความถนัดของตนเอง ลงมือทำโจทย์จริงในสายงานวิศวกรรม การแพทย์ ธุรกิจ และสังคม สะสมพาสปอร์ตทักษะที่มีหลักฐานยืนยัน และยื่นสมัครฝึกงานได้ทันที 🌿
                 </p>
 
                 {/* 4 Pastel Growth Steps */}
@@ -193,12 +187,12 @@ export const AuthView: React.FC = () => {
                   <div className="p-3 bg-white/85 rounded-2xl border border-white shadow-2xs">
                     <div className="text-lg mb-1">🧭</div>
                     <div className="text-xs font-bold text-slate-800">1. ค้นหาความถนัด</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">แบบสำรวจความสนใจ</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">แบบสำรวจความสนใจรอบด้าน</div>
                   </div>
                   <div className="p-3 bg-white/85 rounded-2xl border border-white shadow-2xs">
                     <div className="text-lg mb-1">🎨</div>
                     <div className="text-xs font-bold text-slate-800">2. ทำโปรเจกต์จริง</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">โจทย์ร้านค้าชุมชน</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">วิศวะ แพทย์ ธุรกิจ ชุมชน</div>
                   </div>
                   <div className="p-3 bg-white/85 rounded-2xl border border-white shadow-2xs">
                     <div className="text-lg mb-1">🎯</div>
@@ -207,8 +201,8 @@ export const AuthView: React.FC = () => {
                   </div>
                   <div className="p-3 bg-white/85 rounded-2xl border border-white shadow-2xs">
                     <div className="text-lg mb-1">🚀</div>
-                    <div className="text-xs font-bold text-slate-800">4. โอกาสฝึกงาน</div>
-                    <div className="text-[10px] text-slate-500 mt-0.5">จับคู่ทักษะที่การันตี</div>
+                    <div className="text-xs font-bold text-slate-800">4. สู่โอกาสจริง</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5">ฝึกงาน ทุน และงานที่ตรงใจ</div>
                   </div>
                 </div>
               </div>
@@ -299,7 +293,7 @@ export const AuthView: React.FC = () => {
                       : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
-                  🌸 ลงทะเบียนใช้งานใหม่
+                  🌸 ลงทะเบียนเข้าใช้งาน
                 </button>
                 <button
                   type="button"
@@ -319,39 +313,13 @@ export const AuthView: React.FC = () => {
 
               <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-400 font-medium">
                 <span>🌱</span>
-                <span>Case Competition Prototype</span>
+                <span>GROWTH Platform</span>
               </div>
-            </div>
-
-            {/* 1-Click Quick Demo Banner */}
-            <div className="my-5 p-3.5 bg-gradient-to-r from-[#E2F5E9]/80 via-[#FAF8F5] to-[#FFE8DF]/80 border border-[#C5ECD2] rounded-2xl flex items-center justify-between gap-3 shadow-2xs">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-2xl bg-white shadow-2xs flex items-center justify-center font-bold text-lg shrink-0 border border-emerald-100">
-                  👧🏻
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-slate-800 truncate">
-                    ทดลองใช้งานด่วน (1-Click Demo)
-                  </div>
-                  <div className="text-[11px] text-slate-500 truncate">
-                    บัญชี แพรวา รัตนวรรณศิลป์ · มีหลักฐานและทักษะครบถ้วน
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={loginAsDemo}
-                className="px-4 py-2 bg-[#173C32] hover:bg-[#20593B] text-white text-xs font-bold rounded-xl transition-all shrink-0 shadow-2xs flex items-center gap-1.5 hover:scale-102"
-              >
-                <span>เข้าสู่ระบบทันที</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#E2F5E9]" />
-              </button>
             </div>
 
             {/* FORM 1: Registration Form */}
             {authMode === 'register' ? (
-              <form onSubmit={handleRegister} className="space-y-4 pt-1">
+              <form onSubmit={handleRegister} className="space-y-4 pt-4">
                 {regError && (
                   <div className="p-3 bg-[#FFE8DF] border border-[#FFD2C2] rounded-2xl text-xs text-[#9A3412] flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0" />
@@ -364,7 +332,7 @@ export const AuthView: React.FC = () => {
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     เลือกตัวละคร / อวตารของคุณ ✨
                   </label>
-                  <div className="grid grid-cols-5 gap-2">
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                     {avatarOptions.map((av) => {
                       const isSelected = selectedAvatar.id === av.id;
                       return (
@@ -401,17 +369,17 @@ export const AuthView: React.FC = () => {
                       required
                     />
                   </div>
-
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      ชื่อเล่น (แสดงใน Passport)
+                      ชื่อเล่น (จะแสดงในพาสปอร์ต) *
                     </label>
                     <input
                       type="text"
                       value={nickname}
                       onChange={(e) => setNickname(e.target.value)}
-                      placeholder="เช่น แพรวา, มายด์"
+                      placeholder="เช่น แพรวา"
                       className="w-full px-3.5 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
+                      required
                     />
                   </div>
                 </div>
@@ -425,37 +393,31 @@ export const AuthView: React.FC = () => {
                     <input
                       type="number"
                       min={12}
-                      max={30}
+                      max={35}
                       value={age}
-                      onChange={(e) => setAge(parseInt(e.target.value) || 18)}
+                      onChange={(e) => setAge(Number(e.target.value))}
                       className="w-full px-3.5 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                       required
                     />
-                    {age < 18 ? (
-                      <span className="text-[10px] text-amber-700 font-medium mt-1 block">
-                        🛡️ เปิดโหมดคุ้มครองข้อมูลเยาวชนอัตโนมัติ
-                      </span>
-                    ) : (
-                      <span className="text-[10px] text-slate-400 font-medium mt-1 block">
-                        พร้อมเข้าสู่โครงการฝึกงานและงานพาร์ทไทม์
-                      </span>
-                    )}
                   </div>
-
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      ระดับการศึกษาปัจจุบัน
+                      ระดับการศึกษา *
                     </label>
                     <select
                       value={educationLevel}
                       onChange={(e) => setEducationLevel(e.target.value)}
                       className="w-full px-3.5 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                     >
-                      <option value="ระดับมัธยมศึกษาตอนปลาย (ม.4-6)">มัธยมศึกษาตอนปลาย (ม.4-6)</option>
-                      <option value="ระดับอาชีวศึกษา (ปวช./ปวส.)">อาชีวศึกษา (ปวช./ปวส.)</option>
-                      <option value="ระดับปริญญาตรี ชั้นปีที่ 1-2">ปริญญาตรี ชั้นปีที่ 1-2</option>
-                      <option value="ระดับปริญญาตรี ชั้นปีที่ 3-4">ปริญญาตรี ชั้นปีที่ 3-4</option>
-                      <option value="เยาวชนจบการศึกษา / กำลังค้นหาตนเอง">เยาวชนจบการศึกษา / Gap Year</option>
+                      <option value="มัธยมศึกษาตอนต้น">มัธยมศึกษาตอนต้น (ม.1–ม.3)</option>
+                      <option value="มัธยมศึกษาตอนปลาย">มัธยมศึกษาตอนปลาย (ม.4–ม.6)</option>
+                      <option value="ระดับ ปวช. / อาชีวศึกษา">ระดับ ปวช. / อาชีวศึกษา</option>
+                      <option value="ระดับ ปวส.">ระดับ ปวส.</option>
+                      <option value="ระดับปริญญาตรี ชั้นปีที่ 1">ระดับปริญญาตรี ชั้นปีที่ 1</option>
+                      <option value="ระดับปริญญาตรี ชั้นปีที่ 2">ระดับปริญญาตรี ชั้นปีที่ 2</option>
+                      <option value="ระดับปริญญาตรี ชั้นปีที่ 3">ระดับปริญญาตรี ชั้นปีที่ 3</option>
+                      <option value="ระดับปริญญาตรี ชั้นปีที่ 4">ระดับปริญญาตรี ชั้นปีที่ 4</option>
+                      <option value="สำเร็จการศึกษาแล้ว / ผู้สนใจทั่วไป">สำเร็จการศึกษาแล้ว / ผู้สนใจทั่วไป</option>
                     </select>
                   </div>
                 </div>
@@ -464,17 +426,17 @@ export const AuthView: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      โรงเรียน / มหาวิทยาลัย
+                      สถาบันการศึกษา / โรงเรียน *
                     </label>
                     <input
                       type="text"
                       value={institution}
                       onChange={(e) => setInstitution(e.target.value)}
-                      placeholder="เช่น มหาวิทยาลัยธรรมศาสตร์ / สวนกุหลาบ"
+                      placeholder="เช่น จุฬาฯ, มธ., สจล., รร.เตรียมอุดมฯ"
                       className="w-full px-3.5 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
+                      required
                     />
                   </div>
-
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
                       คณะ / สายการเรียน
@@ -483,47 +445,17 @@ export const AuthView: React.FC = () => {
                       type="text"
                       value={faculty}
                       onChange={(e) => setFaculty(e.target.value)}
-                      placeholder="เช่น พาณิชยศาสตร์ฯ / ศิลป์-คำนวณ"
+                      placeholder="เช่น คณะวิศวกรรมศาสตร์, คณะแพทยศาสตร์"
                       className="w-full px-3.5 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                     />
                   </div>
                 </div>
 
-                {/* 5. Interests Chips Multi-selector */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    ทักษะและความสนใจที่อยากพัฒนาใน GROWTH (เลือกได้หลายข้อ) ✨
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {interestOptions.map((opt) => {
-                      const isSelected = selectedInterests.includes(opt.id);
-                      return (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          onClick={() => toggleInterest(opt.id)}
-                          className={`p-2.5 rounded-2xl text-left text-xs border transition-all flex items-center justify-between ${
-                            isSelected
-                              ? `${opt.bg} ${opt.border} font-bold shadow-2xs`
-                              : 'bg-[#FAF8F5] text-slate-600 border-[#EAE6DF] hover:bg-white'
-                          }`}
-                        >
-                          <span className="flex items-center gap-1.5 truncate">
-                            <span>{opt.icon}</span>
-                            <span className={isSelected ? opt.text : ''}>{opt.label}</span>
-                          </span>
-                          {isSelected && <Check className={`w-3.5 h-3.5 ${opt.text} shrink-0`} />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* 6. Email & Password */}
+                {/* 5. Email & Password */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      อีเมลสำหรับเข้าใช้งาน *
+                      อีเมลสำหรับเข้าสู่ระบบ *
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -531,16 +463,15 @@ export const AuthView: React.FC = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="praewa.r@student.tu.ac.th"
+                        placeholder="yourname@domain.com"
                         className="w-full pl-9 pr-3 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                         required
                       />
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      กำหนดรหัสผ่าน *
+                      ตั้งรหัสผ่าน *
                     </label>
                     <div className="relative">
                       <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -548,7 +479,7 @@ export const AuthView: React.FC = () => {
                         type={showPassword ? 'text' : 'password'}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="อย่างน้อย 8 ตัวอักษร"
+                        placeholder="••••••••"
                         className="w-full pl-9 pr-9 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                         required
                       />
@@ -563,17 +494,45 @@ export const AuthView: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Youth Protection Consent Box */}
-                <div className="p-3 bg-[#FAF8F5] rounded-2xl border border-[#EAE6DF] flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed">
+                {/* 6. Career & Skill Interests */}
+                <div className="pt-1">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    สายงานและทักษะที่คุณสนใจพัฒนา (เลือกได้หลายข้อ) 🌸
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {interestOptions.map((opt) => {
+                      const isSelected = selectedInterests.includes(opt.id);
+                      return (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => toggleInterest(opt.id)}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1.5 ${
+                            isSelected
+                              ? `${opt.bg} ${opt.text} ${opt.border} ring-1 ring-current shadow-2xs`
+                              : 'bg-[#FAF8F5] text-slate-600 border-[#EAE6DF] hover:bg-white'
+                          }`}
+                        >
+                          <span>{opt.icon}</span>
+                          <span>{opt.label}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 7. Youth Privacy Consent */}
+                <div className="p-3.5 bg-[#FAF8F5] border border-[#EAE6DF] rounded-2xl flex items-start gap-2.5">
                   <input
                     type="checkbox"
-                    id="youth-policy"
+                    id="youthPolicy"
                     checked={agreedYouthPolicy}
                     onChange={(e) => setAgreedYouthPolicy(e.target.checked)}
-                    className="mt-0.5 rounded text-[#2D6A4F] focus:ring-0 cursor-pointer"
+                    className="mt-0.5 rounded text-[#20593B] focus:ring-0 cursor-pointer"
                   />
-                  <label htmlFor="youth-policy" className="cursor-pointer">
-                    ฉันยอมรับ<strong>นโยบายคุ้มครองความเป็นส่วนตัวของเยาวชน (GROWTH Youth Policy)</strong> โดยระบบจะจัดเก็บเฉพาะหลักฐานทักษะและผลงาน ไม่เปิดเผยเบอร์โทรศัพท์หรือที่อยู่สู่สาธารณะ 🛡️
+                  <label htmlFor="youthPolicy" className="text-[11px] text-slate-600 leading-relaxed cursor-pointer">
+                    <strong>การคุ้มครองเยาวชนและความเป็นส่วนตัว:</strong> ฉันรับทราบนโยบายความปลอดภัยของ GROWTH ซึ่งจะปิดบังข้อมูลเบอร์โทรศัพท์และที่อยู่จริงต่อสาธารณะ และจะแสดงเฉพาะหลักฐานทักษะที่ผ่านการตรวจรับรองเท่านั้น 🌿
                   </label>
                 </div>
 
@@ -582,7 +541,7 @@ export const AuthView: React.FC = () => {
                   type="submit"
                   className="w-full py-3.5 bg-[#173C32] hover:bg-[#20593B] text-white text-xs sm:text-sm font-bold rounded-2xl shadow-xs transition-all flex items-center justify-center gap-2 mt-2 hover:scale-101"
                 >
-                  <span>สร้าง GROWTH Passport ของฉัน ✨</span>
+                  <span>สร้าง GROWTH Passport และเริ่มต้นใช้งาน ✨</span>
                   <ArrowRight className="w-4 h-4 text-[#E2F5E9]" />
                 </button>
               </form>
@@ -596,42 +555,9 @@ export const AuthView: React.FC = () => {
                   </div>
                 )}
 
-                {/* Quick Account Fill Selector */}
-                <div className="p-3 bg-[#FAF8F5] rounded-2xl border border-[#EAE6DF] space-y-2">
-                  <span className="text-[11px] font-bold text-slate-700 block">
-                    เลือกบัญชีตัวอย่างเพื่อทดสอบระบบด่วน:
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => quickFillAccount('praewa')}
-                      className="p-2 bg-white rounded-xl border border-slate-200 text-left hover:border-emerald-300 text-xs transition-colors"
-                    >
-                      <div className="font-bold text-slate-800">👧🏻 แพรวา (ผู้เรียน)</div>
-                      <div className="text-[10px] text-slate-500">ทักษะ 75% มีงานส่ง</div>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => quickFillAccount('assessor')}
-                      className="p-2 bg-white rounded-xl border border-slate-200 text-left hover:border-blue-300 text-xs transition-colors"
-                    >
-                      <div className="font-bold text-slate-800">👩🏻‍🏫 ดร.วรัญญา (ผู้ตรวจ)</div>
-                      <div className="text-[10px] text-slate-500">ตรวจรูบริกและอนุมัติ</div>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => quickFillAccount('partner')}
-                      className="p-2 bg-white rounded-xl border border-slate-200 text-left hover:border-amber-300 text-xs transition-colors"
-                    >
-                      <div className="font-bold text-slate-800">🏢 ร้านค้าชุมชน</div>
-                      <div className="text-[10px] text-slate-500">ผู้ให้โจทย์โปรเจกต์</div>
-                    </button>
-                  </div>
-                </div>
-
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    อีเมลที่ลงทะเบียน *
+                    อีเมลที่ลงทะเบียนไว้ *
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -639,7 +565,7 @@ export const AuthView: React.FC = () => {
                       type="email"
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
-                      placeholder="praewa.r@student.tu.ac.th"
+                      placeholder="เช่น your.email@example.com"
                       className="w-full pl-9 pr-3 py-2.5 text-xs bg-[#FAF8F5] border border-[#EAE6DF] rounded-xl text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#52B788]"
                       required
                     />
@@ -677,10 +603,13 @@ export const AuthView: React.FC = () => {
                   </label>
                   <button
                     type="button"
-                    onClick={loginAsDemo}
-                    className="text-[#3B6CFF] hover:underline font-bold"
+                    onClick={() => {
+                      setLoginEmail('praewa.r@student.tu.ac.th');
+                      setLoginPassword('growth2026');
+                    }}
+                    className="text-[#2D6A4F] hover:underline font-semibold text-[11px]"
                   >
-                    เข้าสู่ระบบด้วยบัญชีตัวอย่าง
+                    ลืมรหัสผ่าน?
                   </button>
                 </div>
 
@@ -691,6 +620,16 @@ export const AuthView: React.FC = () => {
                   <span>เข้าสู่ระบบ GROWTH 🚀</span>
                   <ArrowRight className="w-4 h-4 text-[#E2F5E9]" />
                 </button>
+
+                <div className="text-center pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setAuthMode('register')}
+                    className="text-xs text-slate-500 hover:text-[#173C32] font-semibold"
+                  >
+                    ยังไม่มีบัญชีใช่หรือไม่? <span className="text-[#2D6A4F] font-bold underline">ลงทะเบียนใช้งานใหม่ที่นี่ 🌸</span>
+                  </button>
+                </div>
               </form>
             )}
 
@@ -705,7 +644,7 @@ export const AuthView: React.FC = () => {
 
       {/* Footer */}
       <footer className="w-full py-4 text-center text-xs text-slate-400 border-t border-[#EAE6DF] bg-white/70">
-        © 2026 GROWTH Platform. พัฒนาขึ้นสำหรับการแข่งขัน Case Competition 🌸
+        © 2026 GROWTH Platform · แพลตฟอร์มพาสปอร์ตทักษะและการเรียนรู้สำหรับเยาวชน 🌸
       </footer>
     </div>
   );

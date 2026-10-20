@@ -8,7 +8,6 @@ import {
   User,
   LayoutDashboard,
   ShieldCheck,
-  RotateCcw,
   Sparkles,
   LogOut,
   Heart,
@@ -37,8 +36,8 @@ export const Sidebar: React.FC = () => {
     setCurrentTab,
     isReviewerMode,
     setIsReviewerMode,
-    resetDemoData,
     skills,
+    projects,
     submissions,
     logout,
   } = useApp();
@@ -111,7 +110,7 @@ export const Sidebar: React.FC = () => {
               )}
               {item.id === 'projects' && (
                 <span className="text-[10px] text-slate-400 font-mono px-1.5 py-0.5 rounded-md bg-slate-100">
-                  6 งาน
+                  {projects.length} งาน
                 </span>
               )}
             </button>
@@ -143,7 +142,7 @@ export const Sidebar: React.FC = () => {
         <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">
           {isReviewerMode
             ? '✨ เปิดโหมดตรวจผลงาน: ตรวจรูบริกและอนุมัติทักษะได้'
-            : '🌱 มุมมองผู้เรียน: สลับเพื่อทดลองตรวจผลงาน'}
+            : '🌱 มุมมองผู้เรียน: สลับเพื่อตรวจผลงานในฐานะผู้ประเมิน'}
         </p>
         {pendingSubmissionsCount > 0 && (
           <div className="mt-2 text-[11px] text-[#4F75FF] font-medium flex items-center gap-1.5 bg-white/70 px-2 py-1 rounded-lg border border-blue-100">
@@ -164,16 +163,12 @@ export const Sidebar: React.FC = () => {
           <span>หน้าลงทะเบียน / สลับบัญชี</span>
         </button>
 
-        <div className="flex items-center justify-between text-xs text-slate-400 px-1 pt-1">
-          <span className="text-[10px]">GROWTH Prototype</span>
-          <button
-            onClick={resetDemoData}
-            title="รีเซ็ตข้อมูลตัวอย่างกลับเป็นค่าเริ่มต้นสำหรับการนำเสนอ"
-            className="flex items-center gap-1 hover:text-slate-700 transition-colors text-[10px] font-medium"
-          >
-            <RotateCcw className="w-3 h-3 text-slate-400" />
-            <span>รีเซ็ตเดโม</span>
-          </button>
+        <div className="flex items-center justify-between text-[11px] text-slate-400 px-1 pt-1 font-mono">
+          <span>GROWTH v2.0</span>
+          <span className="flex items-center gap-1 text-[#2D6A4F] font-sans font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#52B788] animate-pulse" />
+            <span>เชื่อมต่อแล้ว</span>
+          </span>
         </div>
       </div>
     </aside>

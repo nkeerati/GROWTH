@@ -144,7 +144,7 @@ export const TopHeader: React.FC = () => {
 
       {/* Zone 3: Actions & User Mini Pill */}
       <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-        {/* Evaluator Switch Tag for Quick Demos (Pastel Blue) */}
+        {/* Evaluator Switch Tag (Pastel Blue) */}
         <button
           onClick={() => setIsReviewerMode(!isReviewerMode)}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
@@ -152,11 +152,11 @@ export const TopHeader: React.FC = () => {
               ? 'bg-[#E0E7FF] text-[#4338CA] border border-[#C7D2FE] shadow-2xs'
               : 'bg-[#F1F5F9] text-slate-600 hover:bg-[#E2E8F0]'
           }`}
-          title="สลับโหมดผู้ประเมินสำหรับการสาธิตในห้องแข่งขัน"
+          title="สลับมุมมองผู้ประเมินผลงาน / ผู้เรียน"
         >
           <span className="text-xs">🎯</span>
           <span className="hidden sm:inline">
-            {isReviewerMode ? 'โหมดตรวจงาน (เปิดอยู่)' : 'ทดลองโหมดผู้ประเมิน'}
+            {isReviewerMode ? 'โหมดตรวจงาน (เปิดอยู่)' : 'มุมมองผู้ประเมิน'}
           </span>
           <span className="sm:hidden">ตรวจงาน</span>
         </button>

@@ -3,7 +3,7 @@ export type SkillStatus = 'in_progress' | 'pending_review' | 'verified';
 export interface Skill {
   id: string;
   name: string;
-  category: 'business' | 'marketing' | 'tech' | 'design' | 'data' | 'entrepreneurship' | 'social';
+  category: 'business' | 'marketing' | 'tech' | 'design' | 'data' | 'entrepreneurship' | 'social' | 'engineering' | 'medical';
   categoryLabel: string;
   progressPercent: number; // 0 - 100
   status: SkillStatus;
@@ -53,7 +53,7 @@ export interface Project {
   durationWeeks: number;
   deadline: string;
   availableSlots: number;
-  category: 'marketing' | 'data' | 'social' | 'design' | 'tech' | 'business';
+  category: 'marketing' | 'data' | 'social' | 'design' | 'tech' | 'business' | 'engineering' | 'medical';
   evaluationCriteria: string[];
   contactPerson: string;
   contactRole: string;
