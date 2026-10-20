@@ -1,0 +1,6 @@
+{
+  "name": "GROWTH - แพลตฟอร์มพาสปอร์ตทักษะเยาวชน",
+  "description": "GROWTH แพลตฟอร์มพัฒนาและรับรองทักษะเยาวชน เปลี่ยนศักยภาพให้เป็นทักษะที่พิสูจน์ได้ และต่อยอดสู่โอกาสฝึกงานและการทำงานจริง",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

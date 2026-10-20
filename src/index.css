@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'IBM Plex Sans Thai', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-growth-forest: #173C32;
+  --color-growth-emerald: #2D6A4F;
+  --color-growth-leaf: #52B788;
+  --color-growth-blue: #3B6CFF;
+
+  --color-pastel-mint: #E2F5E9;
+  --color-pastel-mint-border: #C5ECD2;
+  --color-pastel-mint-dark: #20593B;
+
+  --color-pastel-peach: #FFE8DF;
+  --color-pastel-peach-border: #FFD2C2;
+  --color-pastel-peach-dark: #D45B3A;
+
+  --color-pastel-lavender: #EDE8FF;
+  --color-pastel-lavender-border: #D8D0FF;
+  --color-pastel-lavender-dark: #5B52D6;
+
+  --color-pastel-butter: #FEF7CD;
+  --color-pastel-butter-border: #FDE88B;
+  --color-pastel-butter-dark: #B45309;
+
+  --color-pastel-rose: #FFE4EC;
+  --color-pastel-rose-border: #FBCFE8;
+  --color-pastel-rose-dark: #BE185D;
+
+  --color-pastel-sky: #E3F2FD;
+  --color-pastel-sky-border: #BAE6FD;
+  --color-pastel-sky-dark: #0369A1;
+
+  --color-growth-canvas: #FAF8F5;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FAF8F5;
+  color: #2D3748;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom smooth transitions for modals and scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f7f4ed;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e3ded5;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c8c2b5;
+}
+
+/* Cute pastel glow utilities */
+.pastel-glow-mint {
+  box-shadow: 0 8px 24px -4px rgba(82, 183, 136, 0.18);
+}
+.pastel-glow-peach {
+  box-shadow: 0 8px 24px -4px rgba(244, 162, 97, 0.18);
+}
+.pastel-glow-lavender {
+  box-shadow: 0 8px 24px -4px rgba(167, 139, 250, 0.2);
+}
